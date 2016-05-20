@@ -23,17 +23,14 @@ set(PKG_VERSION 1.0)
 set(PKG_RELEASE 1)
 set(PKG_LONG_NAME ${PKG_NAME}-${PKG_VERSION})
 
-# IMHO this should just be the default
-rift_werror()
-
 ##
 # This appends to the list of directories to search for
 # header files. INCLUDE_DIRECTORIES is a DIRECTORY property and
 # is inherited from the parent directory.
 #
 include_directories(BEFORE
-  ${RIFT_SUBMODULE_SOURCE_ROOT}/libtimer/estw/include
-  ${RIFT_SUBMODULE_SOURCE_ROOT}/libtimer/safe_base/include
+  include
+  ../safe_base/include
   ${CMAKE_CURRENT_BINARY_DIR})
 
 set(LIB_SOURCES
@@ -56,6 +53,6 @@ set(INSTALL_HFILES
   ../safe_base/include/safe_limits.h  
   ../safe_base/include/safe_types.h
   )
-install(FILES ${INSTALL_HFILES} DESTINATION usr/include COMPONENT ${PKG_LONG_NAME})
-install(TARGETS estw LIBRARY DESTINATION usr/lib COMPONENT ${PKG_LONG_NAME})
+install(FILES ${INSTALL_HFILES} DESTINATION include COMPONENT ${PKG_LONG_NAME})
+install(TARGETS estw LIBRARY DESTINATION lib64 COMPONENT ${PKG_LONG_NAME})
 
